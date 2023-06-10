@@ -1,10 +1,10 @@
-import { Link, useParams } from 'react-router-dom';
-import styled from '@emotion/styled';
-import NotFound from '../components/NotFound.tsx';
 import { useEffect, useState } from 'react';
-import Tag from '../components/Tag.tsx';
-import { IPost } from '../api/types.ts';
+import { Link, useNavigate, useParams } from 'react-router-dom';
+import styled from '@emotion/styled';
 import { deletePostById, getPostById } from '../api';
+import { IPost } from '../api/types';
+import NotFound from '../components/NotFound';
+import Tag from '../components/Tag';
 
 const Title = styled.h1`
   font-size: 3rem;
@@ -60,12 +60,13 @@ const Text = styled.p`
 `;
 
 const Post = () => {
+  const navigate = useNavigate();
   const params = useParams();
   const { postId } = params;
   const [post, setPost] = useState<IPost | null>(null);
 
   const fetchPostById = async () => {
-    const { data } = await getPostById(postId);
+    const { data } = await getPostById(postId ?? '');
     const { post } = data;
     setPost(post);
   };
@@ -86,10 +87,10 @@ const Post = () => {
   };
 
   const requestDeletePostById = async () => {
-    await deletePostById(postId);
+    await deletePostById(postId ?? '');
     navigate('/');
   };
-
+  // todo (4) post 컴포넌트 작성
   return (
     <div style={{ margin: '5.5rem auto', width: '700px' }}>
       <div>

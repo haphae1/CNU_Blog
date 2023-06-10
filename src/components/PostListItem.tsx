@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { IPost } from '../api/types';
+import Tag from './Tag';
 import styled from '@emotion/styled';
 
 const ItemLink = styled(Link)`
@@ -23,6 +24,7 @@ const Contents = styled.p`
 
 const PostListItem = (props: IPost) => {
   const { id, title, contents, tag } = props;
+
   return (
     <ItemLink to={`/post/${id}`}>
       <h2>{title}</h2>

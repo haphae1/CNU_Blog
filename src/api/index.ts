@@ -1,4 +1,3 @@
-// eslint-disable-next-line import/named
 import axios, { AxiosResponse } from 'axios';
 import { IResponsePostList } from './types';
 
@@ -6,7 +5,7 @@ const instance = axios.create({
   headers: {
     'Content-Type': 'application/json',
   },
-  baseURL: 'http://localhost:8000',
+  baseURL: 'http://34.22.77.64:8080',
 });
 
 // todo (6) api 작성
@@ -23,14 +22,18 @@ export const createPost = (title: string, contents: string, tag: string) => {
   });
 };
 
-export const getPostById = (id: number) => {
-  return instance.get('post/${id}');
+export const getPostById = (id: string) => {
+  return instance.get(`/post/${id}`);
 };
 
-export const updatePostById = () => {
-  return null;
+export const updatePostById = (id: string, title: string, contents: string, tag: string) => {
+  return instance.put(`/posts/${id}`, {
+    title,
+    contents,
+    tag,
+  });
 };
 
-export const deletePostById = () => {
-  return null;
+export const deletePostById = (id: string) => {
+  return instance.delete(`/posts/${id}`);
 };
