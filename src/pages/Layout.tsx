@@ -69,7 +69,7 @@ const Layout = () => {
         </div>
         <div>
           <Name>나준수</Name>
-          <Description>설명</Description>
+          <Description>카제 1614 디트</Description>
         </div>
       </Profile>
       <Nav>
